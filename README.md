@@ -39,9 +39,6 @@ The reason is that you have a choice of where to store the anonymous data.
 ```
 {
 	collection: your choice to name the collection
-	, connection: your choice of DDP connection to use
-	, localStorageKey: your choice of what key to use to store the anonymous id in local storage
-	, subscribe: true/false if you want to automatically subscribe to the current visitor's document (default **false**)
 }
 ```
 
