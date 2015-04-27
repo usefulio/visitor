@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'useful:visitor',
-	version: '0.0.1',
+	version: '0.0.2',
 	summary: 'Anonymous User Tracking Platform',
 	git: '',
 	documentation: 'README.md'
@@ -14,10 +14,10 @@ Package.onUse(function(api) {
 
 	// ====== 3RD PARTY PACKAGES =======
 
-	api.use('useful:visitor-client@0.0.1', 'client');
+	api.use('useful:visitor-client@0.0.2', 'client');
 	api.imply('useful:visitor-client', 'client');
 
-	api.use('useful:visitor-server@0.0.1', 'server');
+	api.use('useful:visitor-server@0.0.2', 'server');
 	api.imply('useful:visitor-server', 'server');
 
 	// ====== BOTH =======
