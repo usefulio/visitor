@@ -86,12 +86,14 @@ Properties that may be available on the document by default are:
 
 # Why you should care
 
-You built an app, hooray! What are your users doing?
+You built an app, and people are using it, nice work hot shot!
+
+But what are your users doing?
 
 That's really important but not always obvious. And if you're
-going to start tracking yourself you need a way to identify
-anonymous visitors.
+going to start tracking that yourself (because you like your data)
+you need a way to identify anonymous visitors.
 
 Now you can automatically collect basic information about visitors
 to your app (logged in or not) and actually work with that data 
-directly in your code.
+directly in your code, hooray!
