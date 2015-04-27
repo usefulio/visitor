@@ -14,10 +14,10 @@ Package.onUse(function(api) {
 
 	// ====== 3RD PARTY PACKAGES =======
 
-	api.use('useful:visitor-client', 'client');
+	api.use('useful:visitor-client@0.0.1', 'client');
 	api.imply('useful:visitor-client', 'client');
 
-	api.use('useful:visitor-server', 'server');
+	api.use('useful:visitor-server@0.0.1', 'server');
 	api.imply('useful:visitor-server', 'server');
 
 	// ====== BOTH =======
