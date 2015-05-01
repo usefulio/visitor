@@ -3,5 +3,13 @@
 </head>
 
 <body>
-  <h1>Testing the Useful Visitors Package</h1>
+  {{> WhoAmI}}
 </body>
+
+<template name="WhoAmI">
+  <h1>Testing the Useful Visitors Package</h1>
+  <p class="userId">User: {{userId}}</p>
+  <p class="visitorId">Visitor: {{visitorId}}</p>
+  <button class="signup">Sign Up</button>
+  <button class="signin">Log In</button>
+</template>

@@ -26,6 +26,13 @@
         getTitle().should.become(expectedTitle).and.notify(callback);
     });
 
+    this.Then(/^I should see a visitorId$/, function (callback) {
+      // you can use chai-as-promised in step definitions also
+      this.browser.
+        waitForVisible('.visitorId'). // WebdriverIO chain-able promise magic
+        getText('.visitorId').should.eventually.match(/Visitor\: [a-zA-Z0-9]+/).and.notify(callback);
+    });
+
   };
 
 })();
