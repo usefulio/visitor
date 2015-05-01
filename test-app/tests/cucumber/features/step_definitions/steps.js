@@ -6,8 +6,10 @@
 
     // You can use normal require here, cucumber is NOT run in a Meteor context (by design)
     var url = require('url');
+    var state = {};
 
     this.Given(/^I am a new user$/, function () {
+      state = {};
       // no callbacks! DDP has been promisified so you can just return it
       return this.ddp.callAsync('reset', []); // this.ddp is a connection to the mirror
     });
@@ -26,11 +28,26 @@
         getTitle().should.become(expectedTitle).and.notify(callback);
     });
 
-    this.Then(/^I should see a visitorId$/, function (callback) {
+    this.Then(/^VisitorId should be (new|empty|the same)$/, function (expectedId, callback) {
       // you can use chai-as-promised in step definitions also
       this.browser.
         waitForVisible('.visitorId'). // WebdriverIO chain-able promise magic
-        getText('.visitorId').should.eventually.match(/Visitor\: [a-zA-Z0-9]+/).and.notify(callback);
+        getText('.visitorId').then(function (result) {
+          var visitorId = /Visitor\: ([a-zA-Z0-9]+)?/.exec(result);
+          visitorId = visitorId && visitorId[1];
+
+          var actualId;
+          if (visitorId && visitorId !== state.visitorId)
+            actualId = 'new';
+          if (visitorId && visitorId === state.visitorId)
+            actualId = 'the same';
+          if (!visitorId)
+            actualId = 'empty';
+
+          state.visitorId = visitorId;
+
+          return actualId;
+        }).should.become(expectedId).and.notify(callback);
     });
 
   };
