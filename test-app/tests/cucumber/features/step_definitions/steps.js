@@ -21,6 +21,14 @@
         call(callback);
     });
 
+    this.When(/^I (signup|signin|signout)$/, function (buttonName, callback) {
+      var className = '.' + buttonName;
+      this.browser.
+        waitForVisible(className).
+        click(className).
+        call(callback);
+    });
+
     this.Then(/^I should see the title "([^"]*)"$/, function (expectedTitle, callback) {
       // you can use chai-as-promised in step definitions also
       this.browser.
@@ -28,26 +36,28 @@
         getTitle().should.become(expectedTitle).and.notify(callback);
     });
 
-    this.Then(/^VisitorId should be (new|empty|the same)$/, function (expectedId, callback) {
+    this.Then(/^The "([^"]*)" should be (new|empty|the same)$/
+      , function (variableName, expected, callback) {
       // you can use chai-as-promised in step definitions also
+      var className = '.' + variableName;
       this.browser.
-        waitForVisible('.visitorId'). // WebdriverIO chain-able promise magic
-        getText('.visitorId').then(function (result) {
-          var visitorId = /Visitor\: ([a-zA-Z0-9]+)?/.exec(result);
-          visitorId = visitorId && visitorId[1];
+        waitForVisible(className). // WebdriverIO chain-able promise magic
+        getText(className).then(function (result) {
+          var value = new RegExp(variableName + "\\: ([a-zA-Z0-9]+)?").exec(result);
+          value = value && value[1];
 
-          var actualId;
-          if (visitorId && visitorId !== state.visitorId)
-            actualId = 'new';
-          if (visitorId && visitorId === state.visitorId)
-            actualId = 'the same';
-          if (!visitorId)
-            actualId = 'empty';
+          var actual;
+          if (value) {
+            actual = value === state.value ? "the same" : "new";
+            state.value = value;
+          } else {
+            actual = "empty";
+          }
 
-          state.visitorId = visitorId;
+          console.log(variableName, value);
 
-          return actualId;
-        }).should.become(expectedId).and.notify(callback);
+          return actual;
+        }).should.become(expected).and.notify(callback);
     });
 
   };

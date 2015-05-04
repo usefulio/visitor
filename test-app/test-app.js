@@ -24,6 +24,9 @@ if (Meteor.isClient) {
     , 'click .signin': function () {
       Meteor.loginWithPassword(username, 'password');
     }
+    , 'click .signout': function () {
+      Meteor.logout();
+    }
   });
 }
 
