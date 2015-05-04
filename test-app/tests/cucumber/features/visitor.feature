@@ -26,8 +26,8 @@ Feature: The "app" should retain visitorId when signing in and out
     Then The "visitorId" should be the same
     And The "userId" should be empty
 
-  # Scenario:
-  #   Given I navigate to "/"
-  #   When I signin
-  #   Then The "visitorId" should be the same
-  #   And The "userId" should be the same
+  Scenario:
+    Given I navigate to "/"
+    When I signin
+    Then The "visitorId" should be the same
+    And The "userId" should be the same

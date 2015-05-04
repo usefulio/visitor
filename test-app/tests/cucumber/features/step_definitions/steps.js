@@ -48,8 +48,8 @@
 
           var actual;
           if (value) {
-            actual = value === state.value ? "the same" : "new";
-            state.value = value;
+            actual = value === state[value] ? "the same" : "new";
+            state[value] = value;
           } else {
             actual = "empty";
           }

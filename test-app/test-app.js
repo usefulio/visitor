@@ -1,9 +1,8 @@
 Visitor.init();
 
-var username;
-
 if (Meteor.isClient) {
 
+  var username = "username";
 
   Template.WhoAmI.helpers({
     userId: function () {
@@ -17,7 +16,7 @@ if (Meteor.isClient) {
   Template.WhoAmI.events({
     'click .signup': function () {
       Accounts.createUser({
-        username: username = Random.id()
+        username: username
         , password: "password"
       });
     }
