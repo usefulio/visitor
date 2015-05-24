@@ -2,7 +2,7 @@ Package.describe({
 	name: 'useful:visitor',
 	version: '0.0.2',
 	summary: 'Anonymous User Tracking Platform',
-	git: '',
+	git: 'https://github.com/usefulio/visitor',
 	documentation: 'README.md'
 });
 
